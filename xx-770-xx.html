@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>בלעדי לחברי קבוצת 770</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+      position: relative;
+    }
+
+    th {
+      background-color: #f4f4f4;
+    }
+
+    .filter-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      display: none;
+      z-index: 10;
+      max-width: 300px;
+    }
+
+    .filter-dropdown input {
+      margin: 5px;
+      padding: 5px;
+      width: 90%;
+    }
+
+    .filter-dropdown ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+
+    .filter-dropdown ul li {
+      display: flex; /* Align items horizontally */
+      align-items: center; /* Vertically center the checkbox and label */
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .filter-dropdown ul li label {
+      margin-left: 5px; /* Add spacing between the checkbox and label */
+      cursor: pointer;
+    }
+
+    .filter-dropdown ul li:hover {
+      background-color: #f0f0f0;
+    }
+
+    .filter-icon {
+      cursor: pointer;
+      margin-left: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      border: none;
+      background-color: #007BFF;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    button:active {
+      background-color: #004494;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        font-size: 14px;
+      }
+
+      th, td {
+        padding: 8px;
+      }
+
+      .filter-dropdown {
+        max-width: 100%;
+      }
+
+      .filter-icon {
+        font-size: 14px;
+      }
+
+      button {
+        font-size: 14px;
+        padding: 8px 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 18px;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      .filter-dropdown ul li {
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>בלעדי לחברי קבוצת 770</h1>
+
+  <!-- Reset Filters Button -->
+  <div id="controls">
+    <button onclick="resetFilters()">Reset Filters</button>
+  </div>
+
+  <!-- Row Count Display -->
+  <div id="row-count">Total Rows: 0</div>
+
+  <!-- Table Container -->
+  <div class="table-container">
+    <div id="json-container">
+      <!-- JSON data will be displayed here -->
+    </div>
+  </div>
+
+  <script>
+    // Path to your JSON file
+    const jsonFilePath = 'full-test-results.json'; // Replace with the path to your JSON file
+
+    // Mapping of JSON keys to human-readable column titles
+    const columnTitles = {
+      mispar_rechev: 'מספר רישוי',
+      shnat_yitzur: 'שנת ייצור',
+      kinuy_mishari: 'דגם',
+      tozeret_nm: 'יצרן',
+      automatic_ind: 'ידני = 0'
+    };
+
+    let jsonData = []; // Store the JSON data globally for filtering
+    let activeFilters = {}; // Store active filters for each column
+
+    // Function to fetch and display JSON data
+    async function loadJSON() {
+      try {
+        const response = await fetch(jsonFilePath);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        jsonData = await response.json();
+        displayJSON(jsonData);
+      } catch (error) {
+        console.error('Error fetching JSON:', error);
+        document.getElementById('json-container').innerHTML = `<p style="color: red;">Failed to load JSON data.</p>`;
+      }
+    }
+
+    // Function to display JSON data in a table
+    function displayJSON(data) {
+      const selectedColumns = Object.keys(columnTitles);
+
+      if (Array.isArray(data)) {
+        let table = '<table>';
+        table += '<thead><tr>';
+        selectedColumns.forEach(key => {
+          table += `<th>
+            ${columnTitles[key] || key}
+            <span class="filter-icon" onclick="toggleFilterDropdown('${key}')">▼</span>
+            <div class="filter-dropdown" id="filter-${key}">
+              <input type="text" placeholder="Search..." oninput="filterDropdown('${key}', this.value)">
+              <ul></ul>
+            </div>
+          </th>`;
+        });
+        table += '</tr></thead>';
+        table += '<tbody>';
+        data.forEach(item => {
+          table += '<tr>';
+          selectedColumns.forEach(key => {
+            table += `<td>${item[key] !== undefined ? item[key] : ''}</td>`;
+          });
+          table += '</tr>';
+        });
+        table += '</tbody></table>';
+        document.getElementById('json-container').innerHTML = table;
+
+        // Update the row count
+        document.getElementById('row-count').textContent = `Total Rows: ${data.length}`;
+
+        // Populate filter dropdowns
+        populateFilterDropdowns(data);
+      } else {
+        document.getElementById('json-container').innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        document.getElementById('row-count').textContent = 'Total Rows: 0';
+      }
+    }
+
+    // Function to populate filter dropdowns
+    function populateFilterDropdowns(data) {
+      const selectedColumns = Object.keys(columnTitles);
+      selectedColumns.forEach(key => {
+        const uniqueValues = [...new Set(data.map(item => item[key]))];
+        const dropdown = document.querySelector(`#filter-${key} ul`);
+        dropdown.innerHTML = uniqueValues
+          .map(value => `
+            <li onclick="applyFilter('${key}', '${value}')">${value}</li>
+          `)
+          .join('');
+      });
+    }
+
+    // Function to toggle filter dropdown visibility
+    function toggleFilterDropdown(key) {
+      const dropdown = document.getElementById(`filter-${key}`);
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Function to filter dropdown options
+    function filterDropdown(key, searchValue) {
+      const dropdown = document.querySelector(`#filter-${key} ul`);
+      const allValues = [...new Set(jsonData.map(item => item[key]))];
+
+      dropdown.innerHTML = allValues
+        .filter(value => String(value).toLowerCase().includes(searchValue.toLowerCase()))
+        .map(value => `
+          <li onclick="applyFilter('${key}', '${value}')">${value}</li>
+        `)
+        .join('');
+    }
+
+    // Function to apply a filter to a column
+    function applyFilter(key, value) {
+      activeFilters[key] = value; // Store the selected value in activeFilters
+
+      // Filter the data based on all active filters
+      const filteredData = jsonData.filter(item => {
+        return Object.keys(activeFilters).every(filterKey => {
+          return String(item[filterKey]) === String(activeFilters[filterKey]);
+        });
+      });
+
+      displayJSON(filteredData); // Update the table with filtered data
+    }
+
+    // Function to apply multiple filters to a column
+    function applyMultiFilter(key) {
+      // Get all selected values for the column
+      const selectedValues = Array.from(document.querySelectorAll(`#filter-${key} input:checked`))
+        .map(input => input.value);
+
+      if (selectedValues.length > 0) {
+        activeFilters[key] = selectedValues; // Store selected values in activeFilters
+      } else {
+        delete activeFilters[key]; // Remove the filter if no values are selected
+      }
+
+      // Filter the data based on all active filters
+      const filteredData = jsonData.filter(item => {
+        return Object.keys(activeFilters).every(filterKey => {
+          return activeFilters[filterKey].includes(String(item[filterKey]));
+        });
+      });
+
+      displayJSON(filteredData); // Update the table with filtered data
+    }
+
+    // Function to reset all filters
+    function resetFilters() {
+      activeFilters = {}; // Clear all active filters
+      displayJSON(jsonData); // Reload the original data
+    }
+
+    // Load the JSON data when the page loads
+    loadJSON();
+  </script>
+</body>
+</html>
