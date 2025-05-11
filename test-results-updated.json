@@ -1,0 +1,488 @@
+[
+    {
+        "mispar_rechev": 8877013,
+        "degem_cd": 1,
+        "degem_nm": "AM51B",
+        "shnat_yitzur": 2012,
+        "kinuy_mishari": "I10",
+        "tozeret_nm": "יונדאי הודו",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 4377078,
+        "degem_cd": 2,
+        "degem_nm": "GG17",
+        "shnat_yitzur": 2012,
+        "kinuy_mishari": "JAZZ",
+        "tozeret_nm": "הונדה-יפן",
+        "automatic_ind": 0
+    },
+    {
+        "mispar_rechev": 5877052,
+        "degem_cd": 2,
+        "degem_nm": "ZRE181L-DEXNPW",
+        "shnat_yitzur": 2013,
+        "kinuy_mishari": "COROLLA",
+        "tozeret_nm": "טויוטה טורקיה",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 1777075,
+        "degem_cd": 3,
+        "degem_nm": "SHJDLBS",
+        "shnat_yitzur": 2012,
+        "kinuy_mishari": "FORESTER",
+        "tozeret_nm": "סובארו יפן",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 7277034,
+        "degem_cd": 7,
+        "degem_nm": "199LXY11",
+        "shnat_yitzur": 2015,
+        "kinuy_mishari": "500L",
+        "tozeret_nm": "פיאט סרביה",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 3077086,
+        "degem_cd": 13,
+        "degem_nm": "B32S",
+        "shnat_yitzur": 2017,
+        "kinuy_mishari": "BALENO",
+        "tozeret_nm": "מרוטי-סוזוקי",
+        "automatic_ind": 0
+    },
+    {
+        "mispar_rechev": 2977052,
+        "degem_cd": 19,
+        "degem_nm": "FX411B",
+        "shnat_yitzur": 2013,
+        "kinuy_mishari": "FORTE",
+        "tozeret_nm": "קיה קוריאה",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 2777013,
+        "degem_cd": 20,
+        "degem_nm": "GFC31S",
+        "shnat_yitzur": 2011,
+        "kinuy_mishari": "ALTO",
+        "tozeret_nm": "מרוטי-סוזוקי",
+        "automatic_ind": 0
+    },
+    {
+        "mispar_rechev": 9377028,
+        "degem_cd": 21,
+        "degem_nm": "AB3G",
+        "shnat_yitzur": 2005,
+        "kinuy_mishari": "300C",
+        "tozeret_nm": "קרייזלר קנדה",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 5177057,
+        "degem_cd": 21,
+        "degem_nm": "ES76",
+        "shnat_yitzur": 2005,
+        "kinuy_mishari": "CIVIC",
+        "tozeret_nm": "הונדה טורקיה",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 9677059,
+        "degem_cd": 21,
+        "degem_nm": "ES76",
+        "shnat_yitzur": 2006,
+        "kinuy_mishari": "CIVIC",
+        "tozeret_nm": "הונדה טורקיה",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 5277011,
+        "degem_cd": 29,
+        "degem_nm": "GF7WXTXXL6",
+        "shnat_yitzur": 2013,
+        "kinuy_mishari": "OUTLANDER",
+        "tozeret_nm": "מיצובישי יפן",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 2677030,
+        "degem_cd": 29,
+        "degem_nm": "K3K",
+        "shnat_yitzur": 2017,
+        "kinuy_mishari": "EDGE TITANIUM",
+        "tozeret_nm": "פורד קנדה",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 5477058,
+        "degem_cd": 32,
+        "degem_nm": "JYA22",
+        "shnat_yitzur": 2014,
+        "kinuy_mishari": "SX4 CROSSOVER",
+        "tozeret_nm": "סוזוקי הונגריה",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 1277064,
+        "degem_cd": 32,
+        "degem_nm": "TM627",
+        "shnat_yitzur": 2008,
+        "kinuy_mishari": "AVEO",
+        "tozeret_nm": "שברולט ד.קוריא",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 6677073,
+        "degem_cd": 36,
+        "degem_nm": "3623H7",
+        "shnat_yitzur": 2011,
+        "kinuy_mishari": "PASSAT",
+        "tozeret_nm": "פולקסווגן גרמנ",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 7677054,
+        "degem_cd": 38,
+        "degem_nm": "KEK93",
+        "shnat_yitzur": 2015,
+        "kinuy_mishari": "CX5",
+        "tozeret_nm": "מזדה יפן",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 1977075,
+        "degem_cd": 39,
+        "degem_nm": "GJ2CL1C",
+        "shnat_yitzur": 2013,
+        "kinuy_mishari": "IMPREZA",
+        "tozeret_nm": "סובארו יפן",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 6977061,
+        "degem_cd": 41,
+        "degem_nm": "CM41A",
+        "shnat_yitzur": 2007,
+        "kinuy_mishari": "ACCENT",
+        "tozeret_nm": "יונדאי טורקיה",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 4377067,
+        "degem_cd": 52,
+        "degem_nm": "M301LS-GQGEW",
+        "shnat_yitzur": 2008,
+        "kinuy_mishari": ".SIRION",
+        "tozeret_nm": "דייהטסו-יפן",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 6677054,
+        "degem_cd": 59,
+        "degem_nm": "WX91",
+        "shnat_yitzur": 2015,
+        "kinuy_mishari": "X3 XDRIVE 28I",
+        "tozeret_nm": "ב מ וו ארה\"ב",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 1677030,
+        "degem_cd": 73,
+        "degem_nm": "VAFALFH",
+        "shnat_yitzur": 2015,
+        "kinuy_mishari": "WRX",
+        "tozeret_nm": "סובארו יפן",
+        "automatic_ind": 0
+    },
+    {
+        "mispar_rechev": 3077032,
+        "degem_cd": 75,
+        "degem_nm": "CJ6ED",
+        "shnat_yitzur": 2015,
+        "kinuy_mishari": "SPARK",
+        "tozeret_nm": "שברולט ד.קוריא",
+        "automatic_ind": 0
+    },
+    {
+        "mispar_rechev": 8877036,
+        "degem_cd": 80,
+        "degem_nm": "DM41B",
+        "shnat_yitzur": 2003,
+        "kinuy_mishari": "ELANTRA",
+        "tozeret_nm": "יונדאי קוריאה",
+        "automatic_ind": 0
+    },
+    {
+        "mispar_rechev": 3477031,
+        "degem_cd": 87,
+        "degem_nm": "DH41C",
+        "shnat_yitzur": 2014,
+        "kinuy_mishari": "I35",
+        "tozeret_nm": "יונדאי קוריאה",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 2877073,
+        "degem_cd": 101,
+        "degem_nm": "DB81D",
+        "shnat_yitzur": 2010,
+        "kinuy_mishari": "I30",
+        "tozeret_nm": "יונדאי צ'כיה",
+        "automatic_ind": 0
+    },
+    {
+        "mispar_rechev": 4777076,
+        "degem_cd": 101,
+        "degem_nm": "DB81D",
+        "shnat_yitzur": 2011,
+        "kinuy_mishari": "I30",
+        "tozeret_nm": "יונדאי צ'כיה",
+        "automatic_ind": 0
+    },
+    {
+        "mispar_rechev": 7077011,
+        "degem_cd": 144,
+        "degem_nm": "1A11",
+        "shnat_yitzur": 2014,
+        "kinuy_mishari": "116I",
+        "tozeret_nm": "ב מ וו גרמניה",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 8177027,
+        "degem_cd": 151,
+        "degem_nm": "AEPDKW-AE111L",
+        "shnat_yitzur": 1998,
+        "kinuy_mishari": "COROLLA",
+        "tozeret_nm": "טויוטה יפן",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 6277036,
+        "degem_cd": 181,
+        "degem_nm": "BJ12M",
+        "shnat_yitzur": 2002,
+        "kinuy_mishari": "LANTIS-323",
+        "tozeret_nm": "מזדה יפן",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 2077014,
+        "degem_cd": 191,
+        "degem_nm": "CS3ASRJEL6",
+        "shnat_yitzur": 2006,
+        "kinuy_mishari": "LANCER",
+        "tozeret_nm": "מיצובישי יפן",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 7377064,
+        "degem_cd": 202,
+        "degem_nm": "M301LS-GQGEW",
+        "shnat_yitzur": 2008,
+        "kinuy_mishari": "SIRION",
+        "tozeret_nm": "דייהטסו-יפן",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 8177057,
+        "degem_cd": 210,
+        "degem_nm": "BT51H",
+        "shnat_yitzur": 2005,
+        "kinuy_mishari": "GETZ",
+        "tozeret_nm": "יונדאי קוריאה",
+        "automatic_ind": 0
+    },
+    {
+        "mispar_rechev": 8677074,
+        "degem_cd": 230,
+        "degem_nm": "BX5119",
+        "shnat_yitzur": 2011,
+        "kinuy_mishari": "PICANTO",
+        "tozeret_nm": "קיה קוריאה",
+        "automatic_ind": 0
+    },
+    {
+        "mispar_rechev": 7977054,
+        "degem_cd": 264,
+        "degem_nm": "5B11",
+        "shnat_yitzur": 2015,
+        "kinuy_mishari": "535I",
+        "tozeret_nm": "ב מ וו גרמניה",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 5377065,
+        "degem_cd": 292,
+        "degem_nm": "BK12Z",
+        "shnat_yitzur": 2008,
+        "kinuy_mishari": "MAZDA 3",
+        "tozeret_nm": "מזדה יפן",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 4077085,
+        "degem_cd": 365,
+        "degem_nm": "CC81CG",
+        "shnat_yitzur": 2017,
+        "kinuy_mishari": "NIRO",
+        "tozeret_nm": "קיה קוריאה",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 6377072,
+        "degem_cd": 431,
+        "degem_nm": "CY2ASRSHL6",
+        "shnat_yitzur": 2010,
+        "kinuy_mishari": "LANCER",
+        "tozeret_nm": "מיצובישי יפן",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 1477062,
+        "degem_cd": 491,
+        "degem_nm": "ZZE121L-AEPNKW",
+        "shnat_yitzur": 2007,
+        "kinuy_mishari": "COROLLA",
+        "tozeret_nm": "טויוטה יפן",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 3177073,
+        "degem_cd": 521,
+        "degem_nm": "R4GK",
+        "shnat_yitzur": 2010,
+        "kinuy_mishari": "GRAND CHEROKEE",
+        "tozeret_nm": "קרייזלר ארה\"ב",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 6777067,
+        "degem_cd": 581,
+        "degem_nm": "BL5EL9S",
+        "shnat_yitzur": 2008,
+        "kinuy_mishari": "B4",
+        "tozeret_nm": "סובארו יפן",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 2577066,
+        "degem_cd": 592,
+        "degem_nm": "SH81W",
+        "shnat_yitzur": 2008,
+        "kinuy_mishari": "SANTA FE",
+        "tozeret_nm": "יונדאי קוריאה",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 3977055,
+        "degem_cd": 627,
+        "degem_nm": "7J01",
+        "shnat_yitzur": 2017,
+        "kinuy_mishari": "740LE IPERFORMA",
+        "tozeret_nm": "ב מ וו גרמניה",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 3377060,
+        "degem_cd": 631,
+        "degem_nm": "CL96",
+        "shnat_yitzur": 2005,
+        "kinuy_mishari": "ACCORD",
+        "tozeret_nm": "הונדה-יפן",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 3377073,
+        "degem_cd": 631,
+        "degem_nm": "GYA21S",
+        "shnat_yitzur": 2010,
+        "kinuy_mishari": "SX4",
+        "tozeret_nm": "סוזוקי-יפן",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 7477063,
+        "degem_cd": 641,
+        "degem_nm": "ZRE151L-AEGDKW",
+        "shnat_yitzur": 2008,
+        "kinuy_mishari": "COROLLA",
+        "tozeret_nm": "טויוטה יפן",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 8277067,
+        "degem_cd": 651,
+        "degem_nm": "FD36",
+        "shnat_yitzur": 2008,
+        "kinuy_mishari": "CIVIC HYBRID",
+        "tozeret_nm": "הונדה-יפן",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 8777056,
+        "degem_cd": 751,
+        "degem_nm": "BK12Z",
+        "shnat_yitzur": 2005,
+        "kinuy_mishari": "MAZDA3",
+        "tozeret_nm": "מזדה יפן",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 8577066,
+        "degem_cd": 881,
+        "degem_nm": "ZRE151L-AEPNKW",
+        "shnat_yitzur": 2009,
+        "kinuy_mishari": "COROLLA",
+        "tozeret_nm": "טויוטה יפן",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 3477070,
+        "degem_cd": 881,
+        "degem_nm": "ZRE151L-AEPNKW",
+        "shnat_yitzur": 2010,
+        "kinuy_mishari": "COROLLA",
+        "tozeret_nm": "טויוטה יפן",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 1077074,
+        "degem_cd": 1761,
+        "degem_nm": "212.047",
+        "shnat_yitzur": 2011,
+        "kinuy_mishari": "E250 CGI",
+        "tozeret_nm": "מרצדס בנץ גרמנ",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 7577079,
+        "degem_cd": 2071,
+        "degem_nm": "ZRE151L-AEPDKW",
+        "shnat_yitzur": 2012,
+        "kinuy_mishari": "COROLLA",
+        "tozeret_nm": "טויוטה יפן",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 6477016,
+        "degem_cd": 2251,
+        "degem_nm": "FP31",
+        "shnat_yitzur": 2011,
+        "kinuy_mishari": "523I",
+        "tozeret_nm": "ב מ וו גרמניה",
+        "automatic_ind": 1
+    },
+    {
+        "mispar_rechev": 5777075,
+        "degem_cd": 2251,
+        "degem_nm": "FP31",
+        "shnat_yitzur": 2012,
+        "kinuy_mishari": "523I",
+        "tozeret_nm": "ב מ וו גרמניה",
+        "automatic_ind": 1
+    }
+]

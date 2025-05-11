@@ -3,37 +3,109 @@ import json
 import argparse
 import logging
 
-def fetch_automatic_ind(degem_cd, degem_nm, shnat_yitzur):
+def fetch_automatic_ind(degem_nm):
     """
-    Fetch the 'automatic_ind' field for a given degem_cd, degem_nm, and shnat_yitzur.
+    Fetch the 'automatic_ind' field for a given degem_nm.
     """
     api_url = "https://data.gov.il/api/3/action/datastore_search"
     resource_id = "142afde2-6228-49f9-8a29-9b6c3a0cbe40"  # Secondary datastore ID
 
     # Query parameters
+    filters = {"degem_nm": degem_nm}  # Query by degem_nm
     params = {
         "resource_id": resource_id,
-        "limit": 1,  # We only need one record
-        "filters": {
-            "degem_cd": str(degem_cd),
-            "degem_nm": degem_nm,
-            "shnat_yitzur": str(shnat_yitzur),
-        },
+        "limit": 1,
+        "filters": json.dumps(filters),  # Properly encode the filters as a JSON string
     }
 
     try:
+        logging.debug(f"Querying API with parameters: {json.dumps(params, ensure_ascii=False, indent=4)}")
         response = requests.get(api_url, params=params)
         if response.status_code == 200:
             data = response.json()
+            logging.debug(f"API Response: {json.dumps(data, ensure_ascii=False, indent=4)}")
             records = data.get("result", {}).get("records", [])
             if records:
                 return records[0].get("automatic_ind", None)  # Return the 'automatic_ind' field
+            else:
+                logging.info(f"No matching record found for degem_nm={degem_nm}.")
         else:
-            logging.warning(f"Failed to fetch automatic_ind for degem_cd={degem_cd}, degem_nm={degem_nm}. HTTP {response.status_code}")
+            logging.warning(f"Failed to fetch automatic_ind for degem_nm={degem_nm}. HTTP {response.status_code}")
+            logging.warning(f"Response: {response.text}")
     except Exception as e:
         logging.error(f"Error fetching automatic_ind: {e}")
 
     return None  # Return None if the field is not found or an error occurs
+
+
+def fetch_automatic_ind_batch(degem_nm_list):
+    """
+    Fetch the 'automatic_ind' field for a batch of degem_nm values.
+    """
+    api_url = "https://data.gov.il/api/3/action/datastore_search"
+    resource_id = "142afde2-6228-49f9-8a29-9b6c3a0cbe40"  # Secondary datastore ID
+
+    # Query parameters
+    filters = {"degem_nm": degem_nm_list}  # Query by a list of degem_nm
+    params = {
+        "resource_id": resource_id,
+        "limit": len(degem_nm_list),
+        "filters": json.dumps(filters),  # Properly encode the filters as a JSON string
+    }
+
+    try:
+        logging.debug(f"Querying API with parameters: {json.dumps(params, ensure_ascii=False, indent=4)}")
+        response = requests.get(api_url, params=params)
+        if response.status_code == 200:
+            data = response.json()
+            logging.debug(f"API Response: {json.dumps(data, ensure_ascii=False, indent=4)}")
+            records = data.get("result", {}).get("records", [])
+            return {record.get("degem_nm"): record.get("automatic_ind", None) for record in records}
+        else:
+            logging.warning(f"Failed to fetch automatic_ind for degem_nm_list={degem_nm_list}. HTTP {response.status_code}")
+            logging.warning(f"Response: {response.text}")
+    except Exception as e:
+        logging.error(f"Error fetching automatic_ind: {e}")
+
+    return {degem_nm: None for degem_nm in degem_nm_list}  # Return None for all if an error occurs
+
+
+def update_with_automatic_ind(input_file, output_file):
+    """
+    Update the records in the input JSON file with the 'automatic_ind' field.
+    """
+    # Load the sorted JSON file
+    with open(input_file, "r", encoding="utf-8") as f:
+        records = json.load(f)
+
+    if not records:
+        logging.info("No records found in the input file.")
+        return
+
+    # Track unique degem_nm values to minimize redundant calls
+    queried_degem_nm = {}
+
+    # Iterate through the records and fetch 'automatic_ind'
+    for record in records:
+        degem_nm = record.get("degem_nm")
+
+        # Check if this degem_nm has already been queried
+        if degem_nm not in queried_degem_nm:
+            # Query the external data source
+            automatic_ind = fetch_automatic_ind(degem_nm)
+            queried_degem_nm[degem_nm] = automatic_ind  # Cache the result
+        else:
+            # Use the cached result
+            automatic_ind = queried_degem_nm[degem_nm]
+
+        # Update the record with the 'automatic_ind' field
+        record["automatic_ind"] = automatic_ind
+
+    # Save the updated records to a new JSON file
+    with open(output_file, "w", encoding="utf-8") as f:
+        json.dump(records, f, ensure_ascii=False, indent=4)
+
+    logging.info(f"Updated records saved to {output_file}")
 
 
 def main():
@@ -65,7 +137,7 @@ def main():
 
     # Counter to limit the number of chunks in debug mode
     chunk_counter = 0
-    max_chunks = 3 if args.debug else float('inf')  # Process only 3 chunks in debug mode
+    max_chunks = 1 if args.debug else float('inf')  # Process only 1 chunk in debug mode
 
     while chunk_counter < max_chunks:
         # Fetch a chunk of data
@@ -98,6 +170,9 @@ def main():
                     "mispar_rechev": record["mispar_rechev"],
                     "degem_cd": record.get("degem_cd"),  # Include degem_cd
                     "degem_nm": record.get("degem_nm"),  # Include degem_nm
+                    "shnat_yitzur": record.get("shnat_yitzur"),  # Include shnat_yitzur
+                    "kinuy_mishari": record.get("kinuy_mishari"),  # Include kinuy_mishari
+                    "tozeret_nm": record.get("tozeret_nm"),  # Include tozeret_nm
                 }
                 for record in records
                 if "mispar_rechev" in record
@@ -129,13 +204,28 @@ def main():
     # Convert the unique records back to a list
     filtered_records = list(unique_records.values())
 
-    # Save the filtered records to a JSON file
-    output_file = "test-results.json" if args.debug else "filtered_records.json"
-    with open(output_file, "w", encoding="utf-8") as f:
+    # Sort the filtered records by degem_cd, degem_nm, and shnat_yitzur
+    filtered_records = sorted(
+        filtered_records,
+        key=lambda record: (
+            record.get("degem_cd", 0),  # Sort by degem_cd (default to 0 if missing)
+            record.get("degem_nm", ""),  # Then by degem_nm (default to empty string if missing)
+            record.get("shnat_yitzur", 0)  # Finally by shnat_yitzur (default to 0 if missing)
+        )
+    )
+
+    # Save the sorted records to a JSON file
+    plate_numbers_file = "plate_numbers_results_sorted.json"
+    with open(plate_numbers_file, "w", encoding="utf-8") as f:
         json.dump(filtered_records, f, ensure_ascii=False, indent=4)
 
+    logging.info(f"Sorted records saved to {plate_numbers_file}")
+
     logging.info(f"Total Filtered Records: {len(filtered_records)}")
-    logging.info(f"Filtered records saved to {output_file}")
+    logging.info(f"Filtered records saved to {plate_numbers_file}")
+
+    # Update the records with 'automatic_ind'
+    update_with_automatic_ind(plate_numbers_file, "full-test-results.json")
 
 if __name__ == "__main__":
     main()
