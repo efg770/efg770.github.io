@@ -112,7 +112,7 @@ def main():
     # Set up argument parser
     parser = argparse.ArgumentParser(description="A script with debug and filtering options.")
     parser.add_argument("--debug", action="store_true", help="Enable debug mode for detailed logging.")
-    parser.add_argument("--7", action="store_true", help="Filter only records where 'mispar_rechev' has exactly 7 characters.")
+    parser.add_argument("--8", action="store_true", help="Filter only records where 'mispar_rechev' has exactly 7 characters.")
     
     # Parse arguments
     args = parser.parse_args()
@@ -155,7 +155,7 @@ def main():
 
             # Debug: Print a summary of the response
             if args.debug:
-                logging.debug(f"Chunk {chunk_counter + 1}: Fetched {len(records)} records.")
+                logging.debug(f"Chunk {chunk_counter + 10}: Fetched {len(records)} records.")
                 # Optional: Print the first 5 records as a sample
                 if records:
                     logging.debug(f"Sample records: {json.dumps(records[:5], ensure_ascii=False, indent=4)}")
@@ -176,8 +176,8 @@ def main():
                 }
                 for record in records
                 if "mispar_rechev" in record
-                and (len(str(record["mispar_rechev"])) == 7 if args.__dict__["7"] else True)  # Check for 7 characters if --7 is passed
-                and str(record["mispar_rechev"])[2:5] == "770"  # Check if '770' starts from the 3rd character
+                and (len(str(record["mispar_rechev"])) == 8 if args.__dict__["8"] else True)  # Check for 7 characters if --7 is passed
+                and str(record["mispar_rechev"])[0:3] == "770"  # Check if '770' starts from the 3rd character
             ]
             filtered_records.extend(filtered_chunk)
 
@@ -215,7 +215,7 @@ def main():
     )
 
     # Save the sorted records to a JSON file
-    plate_numbers_file = "plate_numbers_results_sorted.json"
+    plate_numbers_file = "8_plate_numbers_results_sorted.json"
     with open(plate_numbers_file, "w", encoding="utf-8") as f:
         json.dump(filtered_records, f, ensure_ascii=False, indent=4)
 
@@ -225,7 +225,7 @@ def main():
     logging.info(f"Filtered records saved to {plate_numbers_file}")
 
     # Update the records with 'automatic_ind'
-    update_with_automatic_ind(plate_numbers_file, "full-test-results.json")
+    update_with_automatic_ind(plate_numbers_file, "8_full-test-results.json")
 
 if __name__ == "__main__":
     main()
